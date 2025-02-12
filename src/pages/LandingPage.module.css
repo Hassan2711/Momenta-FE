@@ -1,0 +1,142 @@
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #28293e;
+    color: white;
+}
+
+.leftSide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.heading {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.imageContainer {
+    width:  100%;
+    height: 100%;
+    position: relative;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    filter: brightness(95%) contrast(100%) hue-rotate(26deg) saturate(86%);
+    border-radius: 25px;
+}
+
+.textOverlay {
+    position: absolute;
+    top: 20%; /* Adjust text positioning */
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    /* max-width: 400px; */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.textOverlay h1 {
+    font-size: 2.5vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.textOverlay h3 {
+    font-size: 1.5vw;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+
+.rightSide {
+    flex: 1;
+    padding: 2rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputField {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.button {
+    padding: 10px;
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.toggleButton {
+    margin-left: 5px;
+    background: none;
+    border: none;
+    color: #6a5acd;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .textOverlay h1 {
+        font-size: 4.5vw;
+    }
+    
+    .textOverlay h3 {
+        font-size: 2.5vw;
+    }
+
+    .imageContainer {
+        width:  80%;
+        position: relative;
+    }
+}
+
+@media (max-width: 390px) {
+    .leftSide {
+        display: none;
+    }
+    .container {
+        flex-direction: column;
+        height: 100vh;
+    }
+}
