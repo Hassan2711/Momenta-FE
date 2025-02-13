@@ -1,0 +1,41 @@
+.filterBar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.iconContainer {
+    background: #7061cd4f;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.searchInput {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}
+
+.filterOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filterOptions input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}

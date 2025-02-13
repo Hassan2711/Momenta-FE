@@ -17,19 +17,27 @@ const LandingPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+
         try {
             if (isLogin) {
-                const { data } = await API.post('/login', { email, password });
-                
-                navigate('/home'); 
+                const { data } = await API.post('/auth/login', { email, password });
+
+                localStorage.setItem("user", JSON.stringify({ 
+                    firstName: data.user.firstName, 
+                    lastName: data.user.lastName,
+                    token: data.token, 
+                    userId: data.user.userId
+                }));
+
+                navigate('/home');
             } else {
                 if (!agreed) {
                     setError('You must agree to the Terms & Conditions.');
                     return;
                 }
-                
-                const { data } = await API.post('/register', { firstName, lastName, email, password });
-                
+
+                const { data } = await API.post('/auth/register', { firstName, lastName, email, password });
+
                 setFirstName('');
                 setLastName('');
                 setEmail('');
@@ -59,8 +67,8 @@ const LandingPage = () => {
             <div className={styles.rightSide}>
                 <h1>Momenta – Capturing and managing every moment</h1>
                 <h2>{isLogin ? 'Login to Your Account' : 'Create an Account'}</h2>
+
                 <form onSubmit={handleSubmit} className={styles.form}>
-                    
                     {!isLogin && (
                         <>
                             <input 
@@ -109,11 +117,11 @@ const LandingPage = () => {
                                 />
                                 I agree to the <Link to="#">Terms & Conditions</Link>
                             </label>
-                            {error && <p className={styles.errorMessage}>{error}</p>}
                         </>
                     )}
 
-                    {error && isLogin && <p className={styles.errorMessage}>{error}</p>} 
+                    {/* Display Error Messages */}
+                    {error && <p className={styles.errorMessage}>{error}</p>}
 
                     <button type="submit" className={styles.button}>
                         {isLogin ? 'Login' : 'Create Account'}

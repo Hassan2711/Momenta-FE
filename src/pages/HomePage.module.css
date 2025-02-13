@@ -1,0 +1,133 @@
+.container {
+    min-height: 100vh;
+    background-color: #1e1e2e;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #28293e;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+.navLinks {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navLinks li {
+    list-style: none;
+}
+
+.navLinks a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.logout {
+    background: red;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.mainContent {
+    padding: 2rem;
+    text-align: center;
+    flex: 1;
+}
+
+.createEventBtn {
+    background: #6a5acd;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.eventsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.eventCard {
+    background: #28293e;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.eventCard h3 {
+    font-size: 1.4rem;
+}
+
+.eventActions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.editBtn, .deleteBtn, .inviteBtn {
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.editBtn {
+    background: #ffa500;
+    color: white;
+}
+
+.deleteBtn {
+    background: red;
+    color: white;
+}
+
+.inviteBtn {
+    background: #6a5acd;
+    color: white;
+}
+
+.noEvents {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navLinks {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .eventsList {
+        flex-direction: column;
+        align-items: center;
+    }
+}

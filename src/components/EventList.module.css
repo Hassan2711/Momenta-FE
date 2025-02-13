@@ -1,0 +1,35 @@
+.eventsList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.eventCard {
+    background-color: #28293e;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.eventActions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.editBtn {
+    background-color: #6a5acd;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+.deleteBtn {
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
