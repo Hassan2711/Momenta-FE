@@ -54,10 +54,10 @@ const Navbar = () => {
             <h1 className={styles.logo}>Momenta</h1>
 
             <ul className={styles.navLinks}>
-                <li><Link to="/dashboard">Dashboard</Link></li>
-                <li><Link to="/my-events">My Events</Link></li>
+                <li><Link to="/error404">Dashboard</Link></li>
+                <li><Link to="/home">My Events</Link></li>
                 <li><Link to="/invitations">Invitations</Link></li>
-                <li><Link to="/settings">Settings</Link></li>
+                <li><Link to="/error404">Settings</Link></li>
             </ul>
 
             <div className={styles.userSection}>

@@ -33,3 +33,25 @@
     border: none;
     border-radius: 5px;
 }
+
+.inviteBtn {
+    background-color: #6a5acd;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+.inviteBtn:hover {
+    background-color: #5a4b93;
+}
+
+.inviteItem {
+    /* display: flex; */
+    gap: 20px;
+    /* align-items: center; */
+}
+
+.inviteStatus {
+    margin-left: 10px; 
+}

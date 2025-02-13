@@ -6,48 +6,17 @@
     flex-direction: column;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #28293e;
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: white;
-}
-
-.navLinks {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.navLinks li {
-    list-style: none;
-}
-
-.navLinks a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-}
-
-.logout {
-    background: red;
-    border: none;
-    padding: 0.5rem 1rem;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 .mainContent {
     padding: 2rem;
-    text-align: center;
+    /* text-align: center; */
     flex: 1;
+}
+
+.top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .createEventBtn {
@@ -130,4 +99,75 @@
         flex-direction: column;
         align-items: center;
     }
+}
+
+/* Invite Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modalContent {
+    background-color: #2c2f3d;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    color: white;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #6a5acd;
+    background-color: #1e1e2e;
+    color: white;
+}
+
+.userList {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.userItem {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.userItem input {
+    margin-right: 10px;
+}
+
+.sendInviteBtn, .closeBtn {
+    background-color: #6a5acd;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.sendInviteBtn {
+    background-color: #28a745;
+}
+
+.closeBtn {
+    background-color: red;
+}
+
+.hidden {
+    display: none;
 }

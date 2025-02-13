@@ -5,6 +5,7 @@ import EventList from "../components/EventList";
 import EventModal from "../components/EventModal";
 import FilterBar from "../components/FilterBar";  
 import API from "../api";
+import InviteUsersModal from "../components/InviteUsersModal";
 
 const HomePage = () => {
     const [events, setEvents] = useState([]);
@@ -20,6 +21,9 @@ const HomePage = () => {
         location: "",
         reminder: false
     });
+
+    const [showInviteModal, setShowInviteModal] = useState(false); 
+    const [selectedEventId, setSelectedEventId] = useState(null);
 
     const user = JSON.parse(localStorage.getItem("user"));
     const token = user?.token;
@@ -64,17 +68,17 @@ const HomePage = () => {
     };
 
     const openEditModal = (event) => {
-      setEditingEvent(event);
-      const formattedDate = event.date ? new Date(event.date).toISOString().split("T")[0] : "";
-      
-      setEventData({
-          ...event,
-          date: formattedDate,
-          time: event.time,
-      });
-  
-      setShowModal(true);
-  };
+        setEditingEvent(event);
+        const formattedDate = event.date ? new Date(event.date).toISOString().split("T")[0] : "";
+        
+        setEventData({
+            ...event,
+            date: formattedDate,
+            time: event.time,
+        });
+
+        setShowModal(true);
+    };
 
     const deleteEvent = async (eventId) => {
         try {
@@ -122,20 +126,57 @@ const HomePage = () => {
         setFilteredEvents(filtered);
     };
 
+    const openInviteModal = (event) => {
+        setSelectedEventId(event._id);  
+        setShowInviteModal(true);
+    };
+
+    const closeInviteModal = () => {
+        setShowInviteModal(false);
+    };
+
+    const handleInvite = async (userIds) => {
+        try {
+            console.log("Sending invites for event ID:", selectedEventId);
+            const response = await API.post(`/events/${selectedEventId}/invite`, { userIds }, authHeaders);
+            console.log("Invites sent:", response.data);
+            setShowInviteModal(false);
+        } catch (error) {
+            console.error("Error sending invites:", error);
+        }
+    };
+    
+    
+
     return (
         <div className={styles.container}>
             <Navbar />
             <div className={styles.mainContent}>
-                <h2>Welcome, {firstName}! 🎉</h2>
-                <p>Manage your events seamlessly.</p>
+                <div className={styles.top}>
+                    <h2>Welcome, {firstName}! 🎉</h2>
+                    <p>Manage your events seamlessly.</p>
 
-                <button className={styles.createEventBtn} onClick={() => setShowModal(true)}>+ Create New Event</button>
-                
-                {/* Filter Bar */}
+                    <button className={styles.createEventBtn} onClick={() => setShowModal(true)}>+ Create New Event</button>
+                </div>
+                                
                 <FilterBar onFilterChange={handleFilterChange} />
 
+                <EventList 
+                    events={filteredEvents} 
+                    pageType="home"
+                    onEdit={openEditModal} 
+                    onDelete={deleteEvent} 
+                    openInviteModal={openInviteModal} 
+                />
 
-                <EventList events={filteredEvents} onEdit={openEditModal} onDelete={deleteEvent} />
+
+                <InviteUsersModal 
+                    show={showInviteModal} 
+                    eventId={selectedEventId}
+                    onClose={closeInviteModal}
+                    onInvite={handleInvite} 
+                />
+
 
                 <EventModal 
                     showModal={showModal} 
@@ -144,7 +185,7 @@ const HomePage = () => {
                     onClose={closeModal} 
                     onSubmit={handleSubmit} 
                     isEditing={!!editingEvent} 
-                />
+                /> 
             </div>
         </div>
     );
