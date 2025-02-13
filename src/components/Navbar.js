@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaBars, FaTimes } from "react-icons/fa";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:5000", {
@@ -14,6 +14,7 @@ const Navbar = () => {
     const [reminders, setReminders] = useState([]);
     const [showReminders, setShowReminders] = useState(false);
     const [forceRender, setForceRender] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const userData = JSON.parse(localStorage.getItem("user"));
     const userId = userData?.userId;
@@ -49,15 +50,29 @@ const Navbar = () => {
         };
     }, [userId]);
 
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <nav className={styles.navbar}>
             <h1 className={styles.logo}>Momenta</h1>
 
-            <ul className={styles.navLinks}>
+            
+
+
+
+            <ul className={`${styles.navLinks} ${isMenuOpen ? styles.active : ""}`}>
                 <li><Link to="/error404">Dashboard</Link></li>
                 <li><Link to="/home">My Events</Link></li>
                 <li><Link to="/invitations">Invitations</Link></li>
                 <li><Link to="/error404">Settings</Link></li>
+                <li>
+                    <button className={styles.logoutdropown} onClick={() => {
+                    localStorage.removeItem("user");
+                    window.location.href = "/";
+                    }}>Logout</button>
+                </li>
             </ul>
 
             <div className={styles.userSection}>
@@ -88,6 +103,11 @@ const Navbar = () => {
                     localStorage.removeItem("user");
                     window.location.href = "/";
                 }}>Logout</button>
+
+                <div className={styles.hamburger} onClick={toggleMenu}>
+                    {isMenuOpen ? <FaTimes /> : <FaBars />} {/* Change icon based on menu state */}
+                </div>
+
             </div>
         </nav>
     );
